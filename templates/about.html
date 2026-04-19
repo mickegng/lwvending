@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+{% block title %}About – VendCo{% endblock %}
+
+{% block extra_style %}
+<style>
+  .about-hero {
+    padding: 6rem 3rem 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  @media (max-width: 700px) { .about-hero { grid-template-columns: 1fr; } }
+
+  .about-hero h1 { font-size: clamp(3rem, 7vw, 5.5rem); margin-bottom: 1.5rem; }
+  .about-hero h1 span { color: var(--accent); }
+  .about-hero p { color: rgba(245,240,232,0.65); line-height: 1.9; margin-bottom: 1.2rem; }
+
+  .about-visual {
+    aspect-ratio: 4/5;
+    background: var(--gray);
+    border: 1px solid rgba(255,255,255,0.07);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .vending-icon {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 9rem;
+    color: rgba(232,184,75,0.15);
+    line-height: 1;
+    user-select: none;
+  }
+
+  .about-visual::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(232,184,75,0.05) 0%, transparent 60%);
+  }
+
+  /* VALUES */
+  .values { background: var(--gray); padding: 5rem 3rem; }
+  .values-inner { max-width: 1100px; margin: 0 auto; }
+  .values-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+  }
+  .value-item { border-left: 2px solid var(--accent); padding-left: 1.5rem; }
+  .value-item h3 { font-size: 1.3rem; margin-bottom: 0.6rem; }
+  .value-item p { font-size: 0.9rem; color: var(--muted); }
+
+  /* STORY STRIP */
+  .story-strip {
+    max-width: 1100px;
+    margin: 5rem auto;
+    padding: 0 3rem;
+    display: flex;
+    gap: 4rem;
+    align-items: flex-start;
+  }
+  @media (max-width: 700px) { .story-strip { flex-direction: column; } }
+  .story-strip .big-year {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 7rem;
+    color: rgba(232,184,75,0.2);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .story-strip p { color: rgba(245,240,232,0.65); line-height: 1.9; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="about-hero">
+  <div>
+    <p class="section-label">Our Story</p>
+    <h1>Built on <span>Trust</span> &amp; Reliability</h1>
+    <p>
+      VendCo was started with one simple idea: businesses and their people deserve
+      convenient, quality snacks without the hassle of managing it themselves.
+    </p>
+    <p>
+      From a single machine to a growing fleet across the city, we've built our
+      reputation on always showing up — restocking on time, fixing issues fast,
+      and being genuinely easy to work with.
+    </p>
+    <a href="/contact" class="btn" style="margin-top:1rem;">Work With Us</a>
+  </div>
+  <div class="about-visual">
+    <div class="vending-icon">VM</div>
+  </div>
+</div>
+
+<div class="story-strip">
+  <div class="big-year">2015</div>
+  <div>
+    <p class="section-label">Where We Started</p>
+    <h2 style="font-size:2rem; margin-bottom:1rem;">From one machine to a full operation</h2>
+    <p>
+      We placed our first vending machine in a small office building in 2015.
+      Word spread fast. Within two years we were managing dozens of locations across
+      offices, gyms, clinics, and schools. Today, every machine still gets the same
+      personal attention as that very first one.
+    </p>
+  </div>
+</div>
+
+<div class="values">
+  <div class="values-inner">
+    <p class="section-label">What We Stand For</p>
+    <h2 style="font-size: clamp(2rem, 4vw, 3rem);">Our Values</h2>
+    <div class="values-list">
+      <div class="value-item">
+        <h3>Reliability</h3>
+        <p>We show up. Machines are restocked on schedule, every time.</p>
+      </div>
+      <div class="value-item">
+        <h3>Transparency</h3>
+        <p>No hidden fees. You always know exactly what you're getting.</p>
+      </div>
+      <div class="value-item">
+        <h3>Quality</h3>
+        <p>We stock products people actually want — fresh, varied, and fairly priced.</p>
+      </div>
+      <div class="value-item">
+        <h3>Responsiveness</h3>
+        <p>When something's wrong, we're on it within 24 hours. Always.</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

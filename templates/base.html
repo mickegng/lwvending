@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="LW Vending - profesjonalne automaty vendingowe w Jeleniej Górze i okolicach. Bezpłatna instalacja, regularne uzupełnianie, serwis 24/7." />
+  <meta name="keywords" content="automaty vendingowe Jelenia Góra, automat z przekąskami, vending Jelenia Góra, LW Vending" />
+  <title>{% block title %}LW Vending – Automaty Jelenia Góra{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --black: #0a0a0a; --white: #f5f0e8; --accent: #e8b84b; --gray: #1a1a1a; --muted: #888; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--white); font-family: 'DM Sans', sans-serif; font-weight: 300; font-size: 16px; line-height: 1.6; min-height: 100vh; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 3rem; background: rgba(10,10,10,0.85); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.05em; color: var(--accent); text-decoration: none; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { color: var(--white); text-decoration: none; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.7; transition: opacity 0.2s, color 0.2s; }
+    .nav-links a:hover { opacity: 1; color: var(--accent); }
+    main { padding-top: 70px; }
+    footer { border-top: 1px solid rgba(255,255,255,0.08); padding: 2.5rem 3rem; display: flex; justify-content: space-between; align-items: center; margin-top: 6rem; }
+    footer p { font-size: 0.8rem; color: var(--muted); }
+    footer .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: var(--accent); opacity: 0.4; }
+    .section { padding: 5rem 3rem; max-width: 1100px; margin: 0 auto; }
+    .section-label { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+    h1, h2, h3 { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.03em; line-height: 1.1; }
+    .btn { display: inline-block; padding: 0.9rem 2.2rem; background: var(--accent); color: var(--black); font-weight: 500; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; border: none; cursor: pointer; transition: background 0.2s, transform 0.15s; }
+    .btn:hover { background: #f5c85c; transform: translateY(-1px); }
+  </style>
+  {% block extra_style %}{% endblock %}
+</head>
+<body>
+  <nav>
+    <a class="nav-logo" href="/">LW Vending</a>
+    <ul class="nav-links">
+      <li><a href="/">Strona główna</a></li>
+      <li><a href="/kontakt">Kontakt</a></li>
+    </ul>
+  </nav>
+  <main>{% block content %}{% endblock %}</main>
+  <footer>
+    <p>&copy; 2026 LW Vending. Wszelkie prawa zastrzeżone.</p>
+    <span class="footer-logo">LW Vending</span>
+  </footer>
+</body>
+</html>
