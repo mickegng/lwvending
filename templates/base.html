@@ -3,9 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="LW Vending - profesjonalne automaty vendingowe w Jeleniej Górze i okolicach. Bezpłatna instalacja, regularne uzupełnianie, serwis 24/7." />
-  <meta name="keywords" content="automaty vendingowe Jelenia Góra, automat z przekąskami, vending Jelenia Góra, LW Vending" />
-  <title>{% block title %}LW Vending – Automaty Jelenia Góra{% endblock %}</title>
+  <meta name="description" content="LW Vending - profesjonalne automaty vendingowe w Jeleniej Górze i okolicach. Automaty kawowe, z przekąskami i napojami. Bezpłatna instalacja, serwis 24/7." />
+  <meta name="keywords" content="automat vendingowy Jelenia Góra, automat kawowy Jelenia Góra, automaty vendingowe Jelenia Góra, automat z napojami Jelenia Góra, automaty do kawy Jelenia Góra, vending Jelenia Góra, LW Vending, przekąski automat Jelenia Góra, kawa automat Jelenia Góra, automaty jelenia gora, lwvending jelenia gora, automat z przekąskami jelenia góra, vendingowe jelenia góra" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="LW Vending – Automaty Vendingowe Jelenia Góra" />
+  <meta property="og:description" content="Profesjonalne automaty vendingowe w Jeleniej Górze. Kawa, przekąski, napoje. Bezpłatna instalacja!" />
+  <title>{% block title %}LW Vending – Automaty Vendingowe Jelenia Góra{% endblock %}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
@@ -13,11 +16,33 @@
     :root { --black: #0a0a0a; --white: #f5f0e8; --accent: #e8b84b; --gray: #1a1a1a; --muted: #888; }
     html { scroll-behavior: smooth; }
     body { background: var(--black); color: var(--white); font-family: 'DM Sans', sans-serif; font-weight: 300; font-size: 16px; line-height: 1.6; min-height: 100vh; }
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 3rem; background: rgba(10,10,10,0.85); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 3rem; background: rgba(10,10,10,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.06); }
     .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.05em; color: var(--accent); text-decoration: none; }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
     .nav-links a { color: var(--white); text-decoration: none; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.7; transition: opacity 0.2s, color 0.2s; }
     .nav-links a:hover { opacity: 1; color: var(--accent); }
+
+    /* BURGER */
+    .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+    .burger span { display: block; width: 24px; height: 2px; background: var(--white); transition: all 0.3s; }
+    .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .burger.open span:nth-child(2) { opacity: 0; }
+    .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* MOBILE MENU */
+    .mobile-menu { display: none; position: fixed; top: 70px; left: 0; right: 0; background: rgba(10,10,10,0.98); border-bottom: 1px solid rgba(255,255,255,0.08); padding: 1.5rem 3rem; z-index: 99; flex-direction: column; gap: 1.5rem; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { color: var(--white); text-decoration: none; font-size: 1rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.7; }
+    .mobile-menu a:hover { opacity: 1; color: var(--accent); }
+
+    @media (max-width: 768px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-links { display: none; }
+      .burger { display: flex; }
+    }
+
     main { padding-top: 70px; }
     footer { border-top: 1px solid rgba(255,255,255,0.08); padding: 2.5rem 3rem; display: flex; justify-content: space-between; align-items: center; margin-top: 6rem; }
     footer p { font-size: 0.8rem; color: var(--muted); }
@@ -27,6 +52,11 @@
     h1, h2, h3 { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.03em; line-height: 1.1; }
     .btn { display: inline-block; padding: 0.9rem 2.2rem; background: var(--accent); color: var(--black); font-weight: 500; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; border: none; cursor: pointer; transition: background 0.2s, transform 0.15s; }
     .btn:hover { background: #f5c85c; transform: translateY(-1px); }
+
+    @media (max-width: 600px) {
+      .section { padding: 3rem 1.5rem; }
+      footer { padding: 2rem 1.5rem; flex-direction: column; gap: 1rem; text-align: center; }
+    }
   </style>
   {% block extra_style %}{% endblock %}
 </head>
@@ -37,11 +67,34 @@
       <li><a href="/">Strona główna</a></li>
       <li><a href="/kontakt">Kontakt</a></li>
     </ul>
+    <button class="burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/" onclick="closeMenu()">Strona główna</a>
+    <a href="/kontakt" onclick="closeMenu()">Kontakt</a>
+  </div>
+
   <main>{% block content %}{% endblock %}</main>
+
   <footer>
     <p>&copy; 2026 LW Vending. Wszelkie prawa zastrzeżone.</p>
     <span class="footer-logo">LW Vending</span>
   </footer>
+
+  <script>
+    const burger = document.getElementById('burger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    burger.addEventListener('click', () => {
+      burger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+    function closeMenu() {
+      burger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    }
+  </script>
 </body>
 </html>

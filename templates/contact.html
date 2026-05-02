@@ -1,9 +1,9 @@
 {% extends "base.html" %}
-{% block title %}Kontakt – LW Vending{% endblock %}
+{% block title %}Kontakt – LW Vending Jelenia Góra{% endblock %}
 {% block extra_style %}
 <style>
   .contact-wrap { max-width: 1100px; margin: 0 auto; padding: 5rem 3rem; display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: start; }
-  @media (max-width: 700px) { .contact-wrap { grid-template-columns: 1fr; gap: 3rem; } }
+  @media (max-width: 700px) { .contact-wrap { grid-template-columns: 1fr; gap: 3rem; padding: 3rem 1.5rem; } }
   .contact-info h1 { font-size: clamp(3rem, 6vw, 5rem); margin-bottom: 1.5rem; }
   .contact-info h1 span { color: var(--accent); }
   .contact-info p { color: rgba(245,240,232,0.6); line-height: 1.8; margin-bottom: 2rem; }
@@ -14,17 +14,25 @@
   .detail-text strong { display: block; color: var(--white); margin-bottom: 0.15rem; font-weight: 500; }
   .contact-form { background: var(--gray); border: 1px solid rgba(255,255,255,0.07); padding: 2.5rem; }
   .form-group { margin-bottom: 1.4rem; }
-  .form-group label { display: block; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
-  .form-group input, .form-group textarea, .form-group select { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 0.95rem; padding: 0.85rem 1rem; outline: none; transition: border-color 0.2s; appearance: none; }
-  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--accent); }
+  .form-group label { display: block; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; font-weight: 500; }
+  .form-group input, .form-group textarea { width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 0.95rem; padding: 0.85rem 1rem; outline: none; transition: border-color 0.2s, background 0.2s; }
+  .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); background: rgba(255,255,255,0.09); }
   .form-group textarea { resize: vertical; min-height: 130px; }
+  .select-wrapper { position: relative; }
+  .select-wrapper::after { content: '▼'; position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: var(--accent); font-size: 0.7rem; pointer-events: none; }
+  .form-group select { width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 0.95rem; padding: 0.85rem 1rem; outline: none; transition: border-color 0.2s; appearance: none; cursor: pointer; }
+  .form-group select:focus { border-color: var(--accent); background: rgba(255,255,255,0.09); }
+  .form-group select option { background: #1a1a1a; color: var(--white); }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
   @media (max-width: 500px) { .form-row { grid-template-columns: 1fr; } }
   .submit-btn { width: 100%; padding: 1rem; background: var(--accent); color: var(--black); font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.9rem; letter-spacing: 0.08em; text-transform: uppercase; border: none; cursor: pointer; transition: background 0.2s; margin-top: 0.5rem; }
   .submit-btn:hover { background: #f5c85c; }
+  .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
   .success-msg { display: none; background: rgba(0,200,100,0.1); border: 1px solid rgba(0,200,100,0.3); color: #6ef5b0; padding: 1rem; font-size: 0.9rem; margin-top: 1rem; text-align: center; }
+  .error-msg { display: none; background: rgba(200,50,50,0.1); border: 1px solid rgba(200,50,50,0.3); color: #f5a0a0; padding: 1rem; font-size: 0.9rem; margin-top: 1rem; text-align: center; }
 </style>
 {% endblock %}
+
 {% block content %}
 <div class="contact-wrap">
   <div class="contact-info">
@@ -50,6 +58,7 @@
       </div>
     </div>
   </div>
+
   <div class="contact-form">
     <div class="form-row">
       <div class="form-group"><label for="name">Imię i nazwisko</label><input type="text" id="name" placeholder="Jan Kowalski" /></div>
@@ -58,21 +67,60 @@
     <div class="form-group"><label for="business">Nazwa firmy / miejsca</label><input type="text" id="business" placeholder="np. Biuro Centrum, Siłownia FitPlus" /></div>
     <div class="form-group">
       <label for="type">Rodzaj miejsca</label>
-      <select id="type"><option value="">Wybierz...</option><option>Biuro / Miejsce pracy</option><option>Siłownia / Centrum fitness</option><option>Szkoła / Uczelnia</option><option>Szpital / Przychodnia</option><option>Sklep / Handel</option><option>Inne</option></select>
+      <div class="select-wrapper">
+        <select id="type">
+          <option value="">Wybierz...</option>
+          <option>Biuro / Miejsce pracy</option>
+          <option>Siłownia / Centrum fitness</option>
+          <option>Szkoła / Uczelnia</option>
+          <option>Szpital / Przychodnia</option>
+          <option>Sklep / Handel</option>
+          <option>Inne</option>
+        </select>
+      </div>
     </div>
     <div class="form-group"><label for="message">Wiadomość (opcjonalnie)</label><textarea id="message" placeholder="Napisz coś o swoim miejscu lub zadaj pytanie..."></textarea></div>
-    <button class="submit-btn" onclick="handleSubmit()">Wyślij wiadomość</button>
-    <div class="success-msg" id="success">✓ Dziękujemy! Odezwiemy się wkrótce.</div>
+    <button class="submit-btn" id="submitBtn" onclick="handleSubmit()">Wyślij wiadomość</button>
+    <div class="success-msg" id="success">✓ Dziękujemy! Wiadomość została wysłana. Odezwiemy się wkrótce.</div>
+    <div class="error-msg" id="error">✗ Coś poszło nie tak. Proszę spróbować ponownie lub zadzwonić.</div>
   </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-function handleSubmit() {
-  const name = document.getElementById('name').value.trim();
-  const email = document.getElementById('email').value.trim();
-  if (!name || !email) { alert('Proszę podać imię i adres email.'); return; }
-  document.getElementById('success').style.display = 'block';
-  document.querySelector('.submit-btn').textContent = 'Wysłano!';
-  document.querySelector('.submit-btn').disabled = true;
-}
+  emailjs.init("u5NL_sv38uuxbkuBY");
+
+  async function handleSubmit() {
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const business = document.getElementById('business').value.trim();
+    const type = document.getElementById('type').value;
+    const message = document.getElementById('message').value.trim();
+
+    if (!name || !email) {
+      alert('Proszę podać imię i adres email.');
+      return;
+    }
+
+    const btn = document.getElementById('submitBtn');
+    btn.textContent = 'Wysyłanie...';
+    btn.disabled = true;
+
+    try {
+      await emailjs.send("service_zennoyp", "template_4x55y4k", {
+        name: name,
+        email: email,
+        business: business || 'Nie podano',
+        type: type || 'Nie podano',
+        message: message || 'Brak wiadomości',
+      });
+      document.getElementById('success').style.display = 'block';
+      btn.textContent = 'Wysłano!';
+    } catch (error) {
+      document.getElementById('error').style.display = 'block';
+      btn.textContent = 'Wyślij wiadomość';
+      btn.disabled = false;
+    }
+  }
 </script>
 {% endblock %}
